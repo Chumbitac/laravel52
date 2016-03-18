@@ -68,7 +68,7 @@
                         </li>
                     @endif
                 </ul>
-            </div>
+            </div> 
         </div>
     </nav>
 
