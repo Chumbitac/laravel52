@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>Decime Donde!</title>
 
     <!-- Fonts -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
@@ -14,7 +14,34 @@
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
+    <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
+<script>
+$(document).ready(function(){
+    $("#bBuscar").click(function(){
+        $("#loading").show();
+    var pattern = $('input[name=tbBuscar]').val();
+    $.ajax({
+            method: "GET",
+            url: "home/" + pattern,
+      success: function(data){
+        $("#loading").hide();
+        $.each(data, function(i,item){
+
+            alert(data[i].nombre + " " + data[i].direccion);
+
+        })
+      },
+      error: function(){
+             alert("Error!!!"),
+             $("#loading").hide();
+         }
+    }); 
+    });
+});
+
+</script>
     <style>
         body {
             font-family: 'Lato';
@@ -24,6 +51,7 @@
             margin-right: 6px;
         }
     </style>
+
 </head>
 <body id="app-layout">
     <nav class="navbar navbar-default navbar-static-top">
@@ -40,22 +68,20 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Laravel
+                    Decime Donde!
                 </a>
-            </div>
+            </div> 
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
-                </ul>
+
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
+                        <li><a href="{{ url('/login') }}">Ingresar</a></li>
+                        <li><a href="{{ url('/register') }}">Registrar!</a></li>
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
