@@ -12,7 +12,7 @@
 */
 
 Route::get('/', 'HomeController@index');
-//Route::get('/home/{pattern}', 'HomeController@busqueda');
+Route::get('/home/{pattern}', 'HomeController@busqueda');
 
 
 /*
