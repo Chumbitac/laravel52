@@ -34,4 +34,51 @@
 </div>
 
 
+
+
+ <div class="modal fade" id="modalDireccion" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="input-group ">
+              <input name="tbDireccion" id="tbDireccion" type="textbox" placeholder="Ingrese su direccion . . ." class="form-control input-lg">
+              <span class="input-group-btn">
+                <button class="btn btn-success input-lg" type="button" onclick="searchDireccion(document.getElementById('tbDireccion').value)" ><spam class="glyphicon glyphicon-globe" > </spam> </button>
+              </span>
+            </div>
+        </div>
+        <br>
+        <div class="modal-footer">
+           <br>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ <div class="modal fade" id="modalMapa" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h3>¿Sera por aquí?</h3>
+        </div>
+        <div class="modal-body">
+            <div id="map_canvas" style="width: 100%; height: 300px"></div>
+        </div>
+        <br>
+        <div class="modal-footer">
+            <button id="bNo" type="submit" class="btn btn-danger btn-danger pull-left" data-dismiss="modal">No</button>
+            <button id="bSi"type="submit" class="btn btn-success btn-success pull-left" data-dismiss="modal">Si</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 @endsection

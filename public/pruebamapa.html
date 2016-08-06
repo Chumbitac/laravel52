@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<head>
+<title>Pueba</title>
+<script src="//maps.google.com/maps?file=api&v=2&sensor=false&key=AIzaSyB_cBTvxMNWauiCzJOeRDa1RcCjx3ZnaaU" type="text/javascript"></script>
+<script type="text/javascript">
+
+var map = null;
+var geocoder = null;
+function initialize() {
+
+  if (GBrowserIsCompatible()) {
+    map = new GMap2(document.getElementById("map_canvas"));
+    map.setCenter(new GLatLng(21.4419, 0), 1);
+    geocoder = new GClientGeocoder();
+  }
+}
+
+function getLatLng (point) {
+     var matchll = /\(([-.\d]*), ([-.\d]*)/.exec( point );
+      if ( matchll ) {
+       var lat = parseFloat( matchll[1] );
+       var lon = parseFloat( matchll[2] );
+       lat = lat.toFixed(6);
+       lon = lon.toFixed(6);
+
+      } else {
+       var message = "<b>Error extracting info from</b>:" + point + "";
+       var messagRoboGEO = message;
+      }
+
+     return new GLatLng(lat, lon);
+ }
+
+function searchDireccion(Direccion) {
+  if (geocoder) {
+
+    geocoder.getLatLng(Direccion, function(point) {
+
+      if (!point) {
+        alert(Direccion + " not found");
+      } else {
+
+        var latLng = getLatLng (point);
+        var info = "<h3>"+Direccion+"</h3>Latitude: "+latLng.lat()+"  Longitude:"+latLng.lng();
+
+        var marker = new GMarker(point);
+        map.addOverlay(marker);
+        marker.openInfoWindowHtml(info);
+
+      }
+    });
+  }
+}
+</script>
+</head>
+<body onload="initialize()">
+
+  <br/>
+  <input id="Direccion" type="text" size="50"/>
+  <input type="button" value="Search" onclick="searchDireccion(document.getElementById('Direccion').value)"/>
+  <div id="map_canvas" style="width: 500px; height: 300px"></div>
+
+
+</body>
+</html>
